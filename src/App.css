@@ -1,0 +1,14 @@
+/* GOOGLE FONTS  */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* body {
+    margin: 0 0 var(--header-height) 0;
+    font-family:"Poppins", sans-serif;
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+  } */
+
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}

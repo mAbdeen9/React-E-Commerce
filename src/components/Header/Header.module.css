@@ -1,0 +1,84 @@
+.header__mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+  background-color: #232e3e;
+  width: 100%;
+}
+
+.mobile__burger {
+  padding: 0.3rem;
+}
+
+.logo {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.mobile__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 0.8rem;
+  color: white;
+  font-size: 13px;
+}
+.mobile__sign {
+  cursor: pointer;
+}
+
+.mobile__cart {
+  cursor: pointer;
+}
+
+.mobile__form {
+  height: 53px;
+  width: 100%;
+  padding: 2px 10px 5px 10px;
+  background: #232f3e;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+}
+.mobile__serachbar {
+  width: 100%;
+  display: flex;
+  align-content: center;
+}
+
+.mobile__serachbar input {
+  border: none;
+  padding: 0.2rem;
+  width: 98%;
+  height: 43px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.mobile__serachbar button {
+  border: 0;
+  width: 13%;
+  height: 43px;
+  border-radius: 10px;
+  background-color: #febd68;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.mobile__location {
+  background-color: #364759;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 12px 10px 12px 10px;
+}
+
+.mobile__location span {
+  color: #ffff;
+  font-size: 12px;
+  padding-left: 8px;
+  font-weight: 500;
+}
