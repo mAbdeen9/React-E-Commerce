@@ -1,10 +1,14 @@
 import "./App.css";
-import Header from "./components/Header/Header";
+import SignUp from "./components/Sign-up/SignUp";
+// import Header from "./components/Header/Header";
+// import Signin from "./components/Sign-in/Signin";
+
 function App() {
   return (
     <div className="App">
-      <Header />
-      <div className="test"></div>
+      {/* <Header />
+      <div className="test"></div> */}
+      <SignUp />
     </div>
   );
 }
