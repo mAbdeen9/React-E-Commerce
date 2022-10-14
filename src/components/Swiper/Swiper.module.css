@@ -1,0 +1,20 @@
+.swiper__wide {
+  background-color: #e3ebec;
+}
+
+.swiper {
+  background-color: #e3ebec;
+}
+
+.swiper__img {
+  margin: auto;
+  height: 650px;
+  width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .swiper__img {
+    height: 300px;
+    width: 100%;
+  }
+}

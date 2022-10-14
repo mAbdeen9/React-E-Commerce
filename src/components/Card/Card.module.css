@@ -1,0 +1,35 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  background-color: #ffff;
+  padding: 1rem;
+  width: 360px;
+  height: 400px;
+}
+
+.card img {
+  width: 80%;
+  height: 65%;
+  cursor: pointer;
+}
+
+.card h5 {
+  font-weight: bolder;
+}
+
+.card p {
+  cursor: pointer;
+  color: rgb(0, 113, 133);
+  align-self: flex-start;
+  padding-left: 2.2rem;
+  font-weight: 450;
+}
+
+@media screen and (max-width: 280px) {
+  .card {
+    width: 270px;
+  }
+}

@@ -19,6 +19,7 @@ function Header() {
   const mobileNavHandler = () => {
     setMobileNavClass((state) => {
       document.body.style.overflow = "hidden";
+      window.scrollTo(0, 0);
       state = "";
       return state;
     });
