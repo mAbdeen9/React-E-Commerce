@@ -1,0 +1,10 @@
+.flex__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+  background-color: #eaeded;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 3rem;
+}

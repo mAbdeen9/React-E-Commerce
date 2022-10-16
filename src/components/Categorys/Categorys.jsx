@@ -5,14 +5,14 @@ import mens__col from "./../../assets//mens__col.jpeg";
 import womens__col from "./../../assets//women__col.jpeg";
 import electronics__col from "./../../assets//pexels-element-digital-1470167.jpg";
 import Jewellery from "./../../assets//Jewellery.jpeg";
-
+import classes from "./Category.module.css";
 function Categorys() {
   const clickHadnler = () => {
     console.log("123");
   };
 
   return (
-    <div className="flex__box">
+    <div className={classes.flex__box}>
       <Card
         header="FREE Shipping to Country"
         img={truck__img}
