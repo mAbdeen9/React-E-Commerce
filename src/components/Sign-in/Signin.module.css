@@ -52,6 +52,9 @@
   display: block;
   width: 100%;
 }
+.input__box {
+  margin-bottom: 10px;
+}
 
 .input__box label {
   font-weight: 520;
@@ -68,6 +71,14 @@
   border-radius: 5px;
   background-color: #ffffff;
   border: 0.5px solid silver;
+}
+
+.input__box span {
+  padding: 0 0 0 2rem;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #0065c0;
 }
 
 .input__box input:focus {

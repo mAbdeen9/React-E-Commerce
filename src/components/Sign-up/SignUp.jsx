@@ -1,15 +1,39 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useInputChecker from "../../hooks/useInputChecker";
+
 import classes from "./SignUp.module.css";
 
 function SignUp() {
+  const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const nameRef = useRef();
   const navigate = useNavigate();
-  const [isVaild, setIsVaild] = useState(false);
+  const { checkName, checkEmail, checkPassword } = useInputChecker();
+  const [nameError, setNameError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [isVaild, setIsVaild] = useState(true);
 
-  const signUpHandler = (e) => {};
+  const signUpHandler = (e) => {
+    e.preventDefault();
+    const formValues = {
+      name: nameRef.current?.value,
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
+    };
+
+    const vaildForm = () => {
+      if (!checkName(formValues.name, setNameError, setIsVaild)) return;
+      if (!checkEmail(formValues.email, setEmailError, setIsVaild)) return;
+      if (!checkPassword(formValues.password, setPasswordError, setIsVaild))
+        return;
+      return true;
+    };
+    const valid = vaildForm();
+    if (!valid) return;
+    console.log("test sending");
+  };
 
   return (
     <div className={classes.sign__box}>
@@ -25,8 +49,8 @@ function SignUp() {
             <div className={classes.error__box}>
               <h5> There was a problem</h5>
               <p>
-                Please enter your full name Missing e-mail or mobile phone
-                number. Please correct and try again. Please create a password
+                {nameError} {emailError} {passwordError} . Please correct and
+                try again.
               </p>
             </div>
           )}
@@ -52,12 +76,12 @@ function SignUp() {
                   <label htmlFor="password">Create a password</label>
                 </div>
                 <input
-                  minLength={6}
+                  minLength={8}
                   ref={passwordRef}
                   id="password"
                   type="password"
                 />
-                <span>Passwords must be at least 6 characters.</span>
+                <span>Passwords length must be at least 8 .</span>
               </div>
 
               <div className={classes.btn}>

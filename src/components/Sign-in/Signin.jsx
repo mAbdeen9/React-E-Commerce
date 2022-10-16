@@ -10,9 +10,14 @@ function Signin() {
   const signHandler = (e) => {
     e.preventDefault();
     const data = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
     };
+    if (!data.email || !data.password) {
+      setIsVaild(false);
+      return;
+    }
+
     console.log(data);
   };
 
@@ -47,6 +52,7 @@ function Signin() {
               <div className={classes.input__box}>
                 <div>
                   <label htmlFor="password">Password</label>
+                  <span>Forgot your password?</span>
                 </div>
                 <input ref={passwordRef} id="password" type="password" />
               </div>
