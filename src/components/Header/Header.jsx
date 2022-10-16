@@ -18,6 +18,12 @@ function Header() {
   const [mobileNavClass, setMobileNavClass] = useState("none");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
   const mobileNavHandler = () => {
     setMobileNavClass((state) => {
       document.body.style.overflow = "hidden";
