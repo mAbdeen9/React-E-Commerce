@@ -1,18 +1,19 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./SignUp.module.css";
 
 function SignUp() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const nameRef = useRef();
-
+  const navigate = useNavigate();
   const [isVaild, setIsVaild] = useState(false);
 
   const signUpHandler = (e) => {};
 
   return (
     <div className={classes.sign__box}>
-      <div className={classes.sign__head}>
+      <div onClick={() => navigate("/")} className={classes.sign__head}>
         <span className={classes.logo}>
           Shop<span style={{ color: "#ff9900" }}>zon</span>
         </span>
@@ -71,7 +72,9 @@ function SignUp() {
       </div>
       <div className={classes.hava__acc}>
         Already have an account?{" "}
-        <span style={{ color: "#0065C0" }}>Sign in</span>
+        <span onClick={() => navigate("/sign-in")} style={{ color: "#0065C0" }}>
+          Sign in
+        </span>
       </div>
     </div>
   );

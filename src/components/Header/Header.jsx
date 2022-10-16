@@ -11,10 +11,12 @@ import {
 } from "react-bootstrap-icons";
 import classes from "./Header.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [country, setCountry] = useState();
   const [mobileNavClass, setMobileNavClass] = useState("none");
+  const navigate = useNavigate();
 
   const mobileNavHandler = () => {
     setMobileNavClass((state) => {
@@ -54,7 +56,10 @@ function Header() {
       >
         <div className={classes.rightbar}>
           <div className={classes.rightbar__top}>
-            <div className={classes.mobile__sign}>
+            <div
+              onClick={() => navigate("/sign-in")}
+              className={classes.mobile__sign}
+            >
               <span>Sign in </span>
               <Person color="white" size={"25px"} />
             </div>
@@ -99,7 +104,10 @@ function Header() {
             </span>
           </div>
           <div className={classes.mobile__right}>
-            <div className={classes.mobile__sign}>
+            <div
+              onClick={() => navigate("/sign-in")}
+              className={classes.mobile__sign}
+            >
               <span>Sign in ›</span>
               <Person color="white" size={"25px"} />
             </div>
@@ -152,10 +160,13 @@ function Header() {
               </div>
             </form>
           </div>
-          <div className={classes.bg__hello}>
+          <div
+            onClick={() => navigate("/sign-in")}
+            className={classes.bg__hello}
+          >
             <div className={classes.bg__deliver__hello}>Hello, sign in</div>
             <div>
-              Account & Lists <ArrowDownShort />{" "}
+              Account & Lists <ArrowDownShort />
             </div>
           </div>
           <div className={classes.bg__cart}>

@@ -1,13 +1,7 @@
-import { Fragment } from "react";
-import "./App.css";
-import Home from "./pages/Home/Home";
+import Router from "./Router/Router";
 
 function App() {
-  return (
-    <Fragment>
-      <Home></Home>
-    </Fragment>
-  );
+  return <Router />;
 }
 
 export default App;

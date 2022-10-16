@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./Signin.module.css";
 function Signin() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [isVaild, setIsVaild] = useState(true);
+  const navigate = useNavigate();
 
   const signHandler = (e) => {
     e.preventDefault();
@@ -16,7 +18,7 @@ function Signin() {
 
   return (
     <div className={classes.sign__box}>
-      <div className={classes.sign__head}>
+      <div onClick={() => navigate("/")} className={classes.sign__head}>
         <span className={classes.logo}>
           Shop<span style={{ color: "#ff9900" }}>zon</span>
         </span>
@@ -57,7 +59,7 @@ function Signin() {
           <div className={classes.tow_lines}>
             <span>New to Shopzon?</span>
           </div>
-          <div className={classes.btn2}>
+          <div onClick={() => navigate("/sign-up")} className={classes.btn2}>
             <button>Create your Shopzon account</button>
           </div>
         </div>
