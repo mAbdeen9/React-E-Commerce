@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 function Header() {
   const [country, setCountry] = useState();
   const [mobileNavClass, setMobileNavClass] = useState("none");
+  const [cartNum, setCartNum] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,7 +76,7 @@ function Header() {
             </div>
           </div>
           <div className={classes.rightbar__rest}>
-            <div className={classes.flex__list}>
+            <div onClick={() => navigate("/")} className={classes.flex__list}>
               <div>Shopzon Home</div>
               <div>
                 <HouseDoor fontWeight="bold" size="24px" />
@@ -119,6 +120,7 @@ function Header() {
             </div>
             <span className={classes.mobile__cart}>
               <Cart color="white" size={"24px"} />
+              <span className={classes.bg__cartnumber}> {cartNum} </span>
             </span>
           </div>
         </div>
@@ -176,7 +178,8 @@ function Header() {
             </div>
           </div>
           <div className={classes.bg__cart}>
-            <Cart color="white" fontSize="30px" /> <span>Cart</span>
+            <Cart color="white" fontSize="30px" /> <span> Cart </span>
+            <div className={classes.bg__cartnumber}> {cartNum} </div>
           </div>
         </div>
         <div className={classes.bg__down}>

@@ -262,6 +262,11 @@
   align-items: flex-end;
   cursor: pointer;
 }
+.bg__cartnumber {
+  padding: 0.3rem;
+  color: rgb(231, 131, 5);
+  font-weight: 800;
+}
 
 .bg__down {
   display: flex;
@@ -323,7 +328,7 @@
   }
 }
 
-@media screen and (max-height: 510px) {
+@media screen and (max-height: px) {
   .mobile__sidenav {
     height: 0px;
 

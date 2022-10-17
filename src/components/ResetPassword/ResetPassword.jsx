@@ -1,24 +1,26 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import classes from "./Signin.module.css";
-function Signin() {
+import classes from "./ResetPassword.module.css";
+
+function ResetPassword() {
+  //
   const emailRef = useRef();
-  const passwordRef = useRef();
+
   const [isVaild, setIsVaild] = useState(true);
   const navigate = useNavigate();
 
-  const signHandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     const data = {
       email: emailRef.current?.value,
-      password: passwordRef.current?.value,
     };
-    if (!data.email || !data.password) {
+    if (!data.email) {
       setIsVaild(false);
       return;
     }
 
     console.log(data);
+    navigate("/OTP", { replace: true });
   };
 
   return (
@@ -32,43 +34,36 @@ function Signin() {
         <div className={classes.sign__main}>
           {!isVaild && (
             <div className={classes.error__box}>
-              <h5>Incorrect password or email address</h5>
+              <h5>There was a problem</h5>
               <p>
-                Please check your email address & password or click Create
-                Account if you are new to Shopzon.
+                We're sorry. We weren't able to identify you given the
+                information provided.
               </p>
             </div>
           )}
-          <div className={classes.header__tag}>Sign in</div>
+          <div className={classes.header__tag}>
+            Password assistance
+            <p>Enter the email address associated with your Amazon account.</p>
+          </div>
+
           <div className={classes.form}>
-            <form onSubmit={signHandler}>
+            <form onSubmit={submitHandler}>
               <div className={classes.input__box}>
                 <div>
                   <label htmlFor="email">Email</label>
                 </div>
-                <input ref={emailRef} id="email" type="email" />
-              </div>
-
-              <div className={classes.input__box}>
-                <div>
-                  <label htmlFor="password">Password</label>
-                </div>
-                <input ref={passwordRef} id="password" type="password" />
-                <span onClick={() => navigate("/reset-password")}>
-                  Forgot your password?
-                </span>
+                <input
+                  placeholder="Your email"
+                  ref={emailRef}
+                  id="email"
+                  type="email"
+                />
               </div>
 
               <div className={classes.btn}>
                 <button>Continue</button>
               </div>
             </form>
-          </div>
-          <div className={classes.tow_lines}>
-            <span>New to Shopzon?</span>
-          </div>
-          <div onClick={() => navigate("/sign-up")} className={classes.btn2}>
-            <button>Create your Shopzon account</button>
           </div>
         </div>
       </div>
@@ -77,4 +72,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default ResetPassword;
