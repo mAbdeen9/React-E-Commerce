@@ -1,0 +1,63 @@
+.empty__cart {
+  background-color: #e3ebec;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex__box img {
+  width: 250px;
+  height: 299px;
+}
+
+.flex__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px;
+  overflow: hidden;
+  margin-bottom: 100px;
+  gap: 13px;
+  text-align: center;
+}
+
+.head__Text {
+  font-weight: 700;
+  font-size: 21px;
+}
+
+.btn__in {
+  background-color: #ffd712;
+  width: 100%;
+  height: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn__in button {
+  background-color: transparent;
+  border: 0;
+  font-weight: 600;
+}
+
+.btn__out {
+  background-color: #ffffff;
+  width: 100%;
+  height: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn__out button {
+  background-color: transparent;
+  border: 0;
+  font-weight: 600;
+}

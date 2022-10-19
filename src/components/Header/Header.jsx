@@ -106,7 +106,7 @@ function Header() {
             <span onClick={mobileNavHandler} className={classes.mobile__burger}>
               <List color="white" size={"35px"} />
             </span>
-            <span className={classes.logo}>
+            <span onClick={() => navigate("/")} className={classes.logo}>
               Shop<span style={{ color: "#ff9900" }}>zon</span>
             </span>
           </div>
@@ -118,7 +118,10 @@ function Header() {
               <span>Sign in ›</span>
               <Person color="white" size={"25px"} />
             </div>
-            <span className={classes.mobile__cart}>
+            <span
+              onClick={() => navigate("/empty-cart")}
+              className={classes.mobile__cart}
+            >
               <Cart color="white" size={"24px"} />
               <span className={classes.bg__cartnumber}> {cartNum} </span>
             </span>
@@ -142,7 +145,7 @@ function Header() {
       {/* Start Big Screens Header */}
       <div className={classes.bg__header}>
         <div className={classes.bg__top}>
-          <div className={classes.bg__logo}>
+          <div onClick={() => navigate("/")} className={classes.bg__logo}>
             <span className={classes.logo}>
               Shop<span style={{ color: "#ff9900" }}>zon</span>
             </span>
@@ -177,7 +180,10 @@ function Header() {
               Account & Lists <ArrowDownShort />
             </div>
           </div>
-          <div className={classes.bg__cart}>
+          <div
+            onClick={() => navigate("/empty-cart")}
+            className={classes.bg__cart}
+          >
             <Cart color="white" fontSize="30px" /> <span> Cart </span>
             <div className={classes.bg__cartnumber}> {cartNum} </div>
           </div>
