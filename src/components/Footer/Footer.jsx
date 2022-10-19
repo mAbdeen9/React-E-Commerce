@@ -13,6 +13,7 @@ function Footer() {
           </span>{" "}
           dummy e-commerce web app
         </div>
+        <div>Images by storyset on Freepik.com</div>
         <div>Built with ❤️ Mohamed Abdeen</div>
         <div> All rights reserved © 2022 </div>
       </div>

@@ -15,7 +15,9 @@ function EmptyCart() {
           <img src={eCart} alt="empty cart" />
           <div>
             <div className={classes.head__Text}>Your Shopzon Cart is empty</div>
-            <div>Nothing in here. Only possibilities</div>
+            <div className={classes.second__text}>
+              Nothing in here. Only possibilities
+            </div>
           </div>
 
           <div onClick={() => navigate("/sign-in")} className={classes.btn__in}>
