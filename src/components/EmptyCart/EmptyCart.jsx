@@ -22,7 +22,7 @@ function EmptyCart() {
             <button>Sign in to your account</button>
           </div>
           <div
-            onClick={() => navigate("/sign-out")}
+            onClick={() => navigate("/sign-up")}
             className={classes.btn__out}
           >
             <button>Sign up now</button>
