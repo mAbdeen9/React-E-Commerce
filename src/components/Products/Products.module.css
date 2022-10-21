@@ -3,6 +3,7 @@
   flex-direction: row;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  overflow: hidden;
 }
 
 .left__side {
@@ -62,4 +63,67 @@
 
 .prices div:hover {
   color: #df7922;
+}
+
+.mobile__nav {
+  width: 100%;
+  height: 44px;
+  color: #017185;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  display: none;
+  border-bottom: 2px solid silver;
+}
+.mobile__nav div {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  border-left: 2px solid silver;
+  align-items: center;
+  font-weight: 600;
+  font-size: 15.5px;
+  cursor: pointer;
+}
+
+.mobile__bottomMenu {
+  display: none;
+}
+
+.active {
+  display: flex;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+  z-index: 9090;
+  opacity: 0.96;
+  background-color: #ffffff;
+}
+
+@media screen and (max-width: 788px) {
+  .flex__box {
+    flex-direction: column;
+    width: 100%;
+  }
+  .right__side {
+    width: 100%;
+  }
+  .mobile__nav {
+    display: flex;
+  }
+
+  .left__side {
+    display: none;
+  }
+  .right__side h4 {
+    font-size: 15px;
+    font-weight: bolder;
+    padding-left: 0.2rem;
+  }
 }

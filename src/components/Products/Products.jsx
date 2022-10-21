@@ -1,19 +1,31 @@
-import React, { Fragment } from "react";
-import data from "../../fakeProducts.json";
+import React, { Fragment, useEffect, useState } from "react";
+import fakeProduct from "../../fakeProducts.json";
 import ProductsCard from "../Card/ProductsCard";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
 import classes from "./Products.module.css";
+import { ArrowDownShort } from "react-bootstrap-icons";
+function Products(props) {
+  const [active, setActive] = useState(false);
+  let data = fakeProduct.filter((p) => p.category === props.cat);
 
-function Products() {
-  console.log(data);
+  const mobileFilterNavHandler = () => {
+    setActive((prev) => !prev);
+    const status = document.body.style.overflow;
+    document.body.style.overflow = status === "hidden" ? "unset" : "hidden";
+  };
+
   return (
     <Fragment>
-      <Header></Header>
+      <div className={`${classes.mobile__nav}`}>
+        <div onClick={mobileFilterNavHandler}>
+          <p>
+            Filters <ArrowDownShort fontSize="18px" fontWeight="bold" />
+          </p>
+        </div>
+      </div>
       <div className={`container ${classes.flex__box}`}>
         <div className={classes.left__side}>
           <div className={classes.head__text}>Free Shipping by Shopzon</div>
-          <div className={classes.second__text}>Sort products </div>
+          <div className={classes.second__text}>Search Products by </div>
           <div className={classes.second__text}>Avg. Customer Review</div>
           <div className={classes.stars__box}>
             <div className={classes.stars}>
@@ -65,7 +77,7 @@ function Products() {
         <div className={classes.right__side}>
           <h4>RESULTS</h4>
           <div className={classes.cards}>
-            {data.map((p) => {
+            {data?.map((p) => {
               return (
                 <ProductsCard
                   img={p.image}
@@ -77,8 +89,12 @@ function Products() {
             })}
           </div>
         </div>
+        <div
+          className={`${classes.mobile__bottomMenu} ${
+            active ? classes.active : ""
+          }`}
+        ></div>
       </div>
-      <Footer></Footer>
     </Fragment>
   );
 }

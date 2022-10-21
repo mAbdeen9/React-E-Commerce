@@ -6,7 +6,6 @@ const Home = React.lazy(() => import("../pages/Home/Home"));
 const SignIn = React.lazy(() => import("../pages/SignIn/SignIn-page"));
 const SignUp = React.lazy(() => import("../pages/SignUp/SignUp-page"));
 const EmptyCart = React.lazy(() => import("../components/EmptyCart/EmptyCart"));
-
 const ResetPassword = React.lazy(() =>
   import("../components/ResetPassword/ResetPassword")
 );
@@ -17,6 +16,8 @@ const OTPpage = React.lazy(() =>
 const NewPassword = React.lazy(() =>
   import("../components/ResetPassword/NewPassword")
 );
+
+const Products = React.lazy(() => import("../pages/Products/Products-Page"));
 
 function Router() {
   return (
@@ -30,6 +31,7 @@ function Router() {
           <Route path="/new-password" element={<NewPassword />} />
           <Route path="/OTP" element={<OTPpage />} />
           <Route path="/empty-cart" element={<EmptyCart />} />
+          <Route path="/Products" element={<Products cat={""} />} />
         </Routes>
       </Suspense>
     </Fragment>

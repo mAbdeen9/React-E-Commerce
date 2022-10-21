@@ -1,8 +1,7 @@
-import Products from "./components/Products/Products";
 import Router from "./Router/Router";
 
 function App() {
-  return <Products />;
+  return <Router />;
 }
 
 export default App;
