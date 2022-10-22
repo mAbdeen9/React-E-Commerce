@@ -3,10 +3,10 @@ import classes from "./Card.module.css";
 
 function Card(props) {
   return (
-    <div className={classes.card}>
+    <div onClick={props.onClick} className={classes.card}>
       <h5>{props.header}</h5>
       <img src={props.img} alt="product" />
-      <p onClick={props.onClick}>Shop now </p>
+      <p>Shop now </p>
     </div>
   );
 }

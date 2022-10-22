@@ -7,11 +7,12 @@ import electronics__col from "./../../assets//pexels-element-digital-1470167.jpg
 import Jewellery from "./../../assets//Jewellery.jpeg";
 import classes from "./Category.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router";
 function Categorys() {
   const [country, setCountry] = useState("");
-
-  const clickHadnler = () => {
-    console.log("123");
+  const navigate = useNavigate();
+  const clickHadnler = (link) => {
+    navigate(`/Products/${link}`);
   };
 
   useEffect(() => {
@@ -28,27 +29,27 @@ function Categorys() {
 
   return (
     <div className={classes.flex__box}>
-      <Card
-        header={"FREE Shipping to " + country}
-        img={truck__img}
-        onClick={() => clickHadnler()}
-      />
+      <Card header={"FREE Shipping to " + country} img={truck__img} />
       <Card
         header="Men's clothing"
         img={mens__col}
-        onClick={() => clickHadnler()}
+        onClick={() => clickHadnler("mens clothing")}
       />
       <Card
         header="Women's clothing"
         img={womens__col}
-        onClick={() => clickHadnler()}
+        onClick={() => clickHadnler("womens clothing")}
       />
       <Card
         header="Electronics"
         img={electronics__col}
-        onClick={() => clickHadnler()}
+        onClick={() => clickHadnler("electronics")}
       />
-      <Card header="Jewellery" img={Jewellery} onClick={() => clickHadnler()} />
+      <Card
+        header="Jewellery"
+        img={Jewellery}
+        onClick={() => clickHadnler("jewelery")}
+      />
     </div>
   );
 }

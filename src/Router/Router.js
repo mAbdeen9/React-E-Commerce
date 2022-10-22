@@ -20,6 +20,7 @@ const NewPassword = React.lazy(() =>
 const Products = React.lazy(() => import("../pages/Products/Products-Page"));
 
 function Router() {
+  //
   return (
     <Fragment>
       <Suspense fallback={<PagesLoading />}>
@@ -31,7 +32,7 @@ function Router() {
           <Route path="/new-password" element={<NewPassword />} />
           <Route path="/OTP" element={<OTPpage />} />
           <Route path="/empty-cart" element={<EmptyCart />} />
-          <Route path="/Products" element={<Products cat={""} />} />
+          <Route path="/Products/:cat" element={<Products />} />
         </Routes>
       </Suspense>
     </Fragment>

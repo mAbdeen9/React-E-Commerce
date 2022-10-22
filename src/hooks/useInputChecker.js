@@ -36,20 +36,6 @@ function useInputChecker() {
   };
 
   const checkPassword = (inputValue, setError, setForm) => {
-    // const { error } = validatePassword({
-    //   password: inputValue,
-    // });
-
-    // if (error) {
-    //   setError(() => error.message);
-    //   setForm(false);
-    //   return false;
-    // } else {
-    //   setError(false);
-    //   setForm(true);
-    //   return true;
-    // }
-
     const isVaildPassowrd = validatePassword(inputValue);
 
     if (!isVaildPassowrd) {

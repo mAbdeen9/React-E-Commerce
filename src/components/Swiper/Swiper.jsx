@@ -1,9 +1,7 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-
 import s2 from "./../../assets/swiper/s2.png";
 import s3 from "./../../assets/swiper/s3.png";
-
 import classes from "./Swiper.module.css";
 
 function Swiper() {
