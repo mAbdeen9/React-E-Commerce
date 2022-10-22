@@ -2,8 +2,10 @@ import React from "react";
 import classes from "./Card.module.css";
 
 function ProductsCard(props) {
+  //
+
   return (
-    <div className={classes.p__card}>
+    <div onClick={props.onClick()} className={classes.p__card}>
       <img src={props.img} alt="product" />
       <div>
         <div className={classes.card__title}>{props.title}</div>

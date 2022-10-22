@@ -141,6 +141,7 @@ function Products() {
                       title={p.title}
                       rating={p.rating.rate}
                       price={p.price}
+                      onClick={() => () => console.log(p)}
                     />
                   </Fragment>
                 );
