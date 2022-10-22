@@ -3,13 +3,14 @@ import fakeProduct from "../../fakeProducts.json";
 import ProductsCard from "../Card/ProductsCard";
 import classes from "./Products.module.css";
 import { ArrowDownShort } from "react-bootstrap-icons";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function Products() {
   //
   const { cat } = useParams();
   const [active, setActive] = useState(false);
   const [data, setData] = useState();
+  const navigate = useNavigate();
 
   const mobileFilterNavHandler = () => {
     setActive((prev) => !prev);
@@ -141,7 +142,7 @@ function Products() {
                       title={p.title}
                       rating={p.rating.rate}
                       price={p.price}
-                      onClick={() => () => console.log(p)}
+                      onClick={() => () => navigate(`/Product/${p.id}`)}
                     />
                   </Fragment>
                 );

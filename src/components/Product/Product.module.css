@@ -85,7 +85,7 @@ img {
   padding: 0.1rem;
 }
 
-@media screen and (max-width: 786px) {
+@media screen and (max-width: 863px) {
   .product__box {
     flex-direction: column;
     justify-content: center;

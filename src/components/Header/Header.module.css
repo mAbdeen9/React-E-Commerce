@@ -294,7 +294,7 @@
   font-size: 15px;
 }
 
-@media screen and (min-width: 787px) {
+@media screen and (min-width: 863px) {
   .mobile__header {
     display: none;
   }

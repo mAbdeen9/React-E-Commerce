@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import Product from "../../components/Product/Product";
 import Products from "../../components/Products/Products";
 import classes from "./ProductsPage.module.css";
 
@@ -10,7 +9,7 @@ function ProductsPage() {
     <Fragment>
       <Header />
       <div className={classes.main}>
-        <Product />
+        <Products />
       </div>
       <Footer />
     </Fragment>

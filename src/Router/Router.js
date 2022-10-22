@@ -18,7 +18,7 @@ const NewPassword = React.lazy(() =>
 );
 
 const Products = React.lazy(() => import("../pages/Products/Products-Page"));
-
+const Product = React.lazy(() => import("../pages/Product/ProductPage"));
 function Router() {
   //
   return (
@@ -33,6 +33,7 @@ function Router() {
           <Route path="/OTP" element={<OTPpage />} />
           <Route path="/empty-cart" element={<EmptyCart />} />
           <Route path="/Products/:cat" element={<Products />} />
+          <Route path="/Product/:id" element={<Product />} />
         </Routes>
       </Suspense>
     </Fragment>
