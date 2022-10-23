@@ -7,7 +7,7 @@
   height: 48px;
   background-color: #232e3e;
   width: 100%;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .mobile__burger {
@@ -211,21 +211,45 @@
 
 .bg__search {
   width: 40%;
-  height: 38px;
+  height: 300px;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  z-index: 9090;
+  margin-top: calc(300px - 38px);
   border-radius: 5px;
-  overflow: hidden;
 }
 
-.bg__search form {
+.bg__serachbarText {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 38px);
+  background-color: #ffff;
+  border: 2px solid silver;
+  padding: 0.33rem;
+  font-weight: 600;
+  display: none;
+  overflow-y: scroll;
+}
+.bg__search form {
+  display: block;
+  width: 100%;
+  height: calc(100% -38px);
+}
+.active_input {
+  display: block;
+}
+.search__value {
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+.search__value:hover {
+  color: darkorange;
 }
 
 .bg__serachbar {
   width: 100%;
-  height: 100%;
+  height: 38px;
   display: flex;
   background-color: #ffff;
 }

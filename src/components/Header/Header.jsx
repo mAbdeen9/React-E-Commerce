@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import {
   List,
   Cart,
@@ -12,18 +12,37 @@ import {
 import classes from "./Header.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import fakeProduct from "../../fakeProducts.json";
 
 function Header() {
+  //
+  const navigate = useNavigate();
   const [country, setCountry] = useState();
   const [mobileNavClass, setMobileNavClass] = useState("none");
   const [cartNum, setCartNum] = useState(0);
-  const navigate = useNavigate();
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchResuls, setSearchResults] = useState([]);
+  const inputRef = useRef();
 
   useEffect(() => {
     return () => {
       document.body.style.overflow = "unset";
     };
   }, []);
+
+  const searchHandler = () => {
+    if (!showSearch) setShowSearch(true);
+    const inputValue = inputRef.current.value;
+    const data = [];
+    for (let p of fakeProduct) {
+      if (
+        p.title.toLowerCase().trim().includes(inputValue.toLowerCase().trim())
+      ) {
+        data.push(p);
+      }
+    }
+    setSearchResults(data);
+  };
 
   const mobileNavHandler = () => {
     setMobileNavClass((state) => {
@@ -48,7 +67,8 @@ function Header() {
         const data = await axios.get("https://ipapi.co/json/");
         setCountry(data.data.city);
       } catch (err) {
-        alert(err);
+        // alert(err);
+        console.log(err);
       }
     };
     getGeoInfo();
@@ -162,14 +182,33 @@ function Header() {
             </div>
           </div>
           <div className={classes.bg__search}>
-            <form>
+            <form onKeyDown={searchHandler}>
               <div className={classes.bg__serachbar}>
-                <input type="text" />
-                <button>
+                <input
+                  ref={inputRef}
+                  onBlur={(e) => setTimeout(() => setShowSearch(false), 500)}
+                  type="text"
+                />
+                <button onClick={(e) => e.preventDefault()}>
                   <Search color="black" size={"20px"} fontWeight="bold" />
                 </button>
               </div>
             </form>
+            <div
+              className={`${classes.bg__serachbarText} ${
+                showSearch ? classes.active_input : ""
+              }`}
+            >
+              {searchResuls.map((p, i) => (
+                <div
+                  className={classes.search__value}
+                  key={i}
+                  onClick={() => navigate(`/Product/${p.id}`)}
+                >
+                  {p.title}
+                </div>
+              ))}
+            </div>
           </div>
           <div
             onClick={() => navigate("/sign-in")}
