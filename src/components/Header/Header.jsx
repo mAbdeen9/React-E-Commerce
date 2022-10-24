@@ -23,6 +23,7 @@ function Header() {
   const [showSearch, setShowSearch] = useState(false);
   const [searchResuls, setSearchResults] = useState([]);
   const inputRef = useRef();
+  const inputMobileRef = useRef();
 
   useEffect(() => {
     return () => {
@@ -33,6 +34,20 @@ function Header() {
   const searchHandler = () => {
     if (!showSearch) setShowSearch(true);
     const inputValue = inputRef.current.value;
+    const data = [];
+    for (let p of fakeProduct) {
+      if (
+        p.title.toLowerCase().trim().includes(inputValue.toLowerCase().trim())
+      ) {
+        data.push(p);
+      }
+    }
+    setSearchResults(data);
+  };
+
+  const searchHandlerMobile = () => {
+    if (!showSearch) setShowSearch(true);
+    const inputValue = inputMobileRef.current.value;
     const data = [];
     for (let p of fakeProduct) {
       if (
@@ -148,15 +163,34 @@ function Header() {
           </div>
         </div>
 
-        <form className={classes.mobile__form}>
+        <form onKeyDown={searchHandlerMobile} className={classes.mobile__form}>
           <div className={classes.mobile__serachbar}>
-            <input type="text" placeholder="Search Shopzon" />
+            <input
+              ref={inputMobileRef}
+              onBlur={() => setTimeout(() => setShowSearch(false), 500)}
+              type="text"
+              placeholder="Search Shopzon"
+            />
             <button>
               <Search color="black" size={"25px"} fontWeight="bold" />
             </button>
           </div>
         </form>
-
+        <div
+          className={`${classes.bg__serachbarText} ${
+            showSearch ? classes.active_input : ""
+          }`}
+        >
+          {searchResuls.map((p, i) => (
+            <div
+              className={classes.search__value}
+              key={i}
+              onClick={() => navigate(`/Product/${p.id}`)}
+            >
+              {p.title}
+            </div>
+          ))}
+        </div>
         <div className={classes.mobile__location}>
           <GeoAlt color="white" /> <span> Deliver to {country}</span>
         </div>
