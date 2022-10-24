@@ -171,7 +171,7 @@ function Header() {
               type="text"
               placeholder="Search Shopzon"
             />
-            <button>
+            <button onClick={(e) => e.preventDefault()}>
               <Search color="black" size={"25px"} fontWeight="bold" />
             </button>
           </div>
