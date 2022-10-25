@@ -125,9 +125,13 @@ function Header() {
             </div>
             <div className={classes.line}></div>
             <div className={classes.flex__listY}>
-              <div>About us </div>
-              <p>Team</p>
-              <p>Technologies</p>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/about")}
+              >
+                About
+              </div>
+              <p onClick={() => navigate("/about")}>Technologies</p>
             </div>
           </div>
         </div>

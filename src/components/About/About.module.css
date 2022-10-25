@@ -1,0 +1,46 @@
+.about__box {
+  display: flex;
+  background-color: #e2ebec;
+  min-height: 90vh;
+  width: 100%;
+  padding: 0.3rem;
+}
+
+.cont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ffff;
+  height: fit-content;
+  margin-top: 2rem;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 3px 5px 5px 0px rgba(0, 0, 0, 0.45);
+}
+
+.cont img {
+  width: 40%;
+}
+
+.cont div {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #455964;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 863px) {
+  .cont {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cont div {
+    font-size: 16px;
+  }
+  .cont img {
+    width: 80%;
+  }
+}

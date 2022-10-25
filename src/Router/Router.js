@@ -5,6 +5,7 @@ import PagesLoading from "../components/Loading/PagesLoading";
 const Home = React.lazy(() => import("../pages/Home/Home"));
 const SignIn = React.lazy(() => import("../pages/SignIn/SignIn-page"));
 const SignUp = React.lazy(() => import("../pages/SignUp/SignUp-page"));
+const AboutPage = React.lazy(() => import("../pages/About/AboutPage"));
 const EmptyCart = React.lazy(() => import("../components/EmptyCart/EmptyCart"));
 const ResetPassword = React.lazy(() =>
   import("../components/ResetPassword/ResetPassword")
@@ -28,6 +29,7 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/new-password" element={<NewPassword />} />
           <Route path="/OTP" element={<OTPpage />} />

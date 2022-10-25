@@ -351,21 +351,3 @@
     width: 5%;
   }
 }
-
-@media screen and (max-height: px) {
-  .mobile__sidenav {
-    height: 0px;
-
-    overflow: scroll !important;
-  }
-
-  .rightbar {
-    height: 100%;
-    padding: 0 0 2rem;
-    overflow: scroll !important;
-  }
-  .leftbar {
-    height: 100%;
-    overflow: scroll !important;
-  }
-}
