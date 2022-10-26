@@ -1,0 +1,51 @@
+.deals__box {
+  background-color: #eaeded;
+  width: 100%;
+  padding: 2rem;
+}
+
+.swiper__box {
+  border-radius: 7px;
+  width: 90%;
+  height: 288px;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  gap: 0.3rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.imgs__box {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 20px;
+}
+
+.imgs__box div {
+  width: 230px;
+  height: 200px;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.imgs__box div img {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 861px) {
+  .swiper__box {
+    height: 200px;
+    width: 100%;
+  }
+
+  .imgs__box div {
+    height: 100px;
+    width: 100px;
+  }
+}

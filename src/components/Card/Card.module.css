@@ -8,12 +8,14 @@
   padding: 1rem;
   width: 360px;
   height: 400px;
+  border-radius: 7px;
 }
 
 .card img {
   width: 80%;
   height: 65%;
   cursor: pointer;
+  border-radius: 7px;
 }
 
 .card h5 {

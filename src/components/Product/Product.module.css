@@ -2,12 +2,12 @@
   background-color: #ffffff;
   min-height: 80vh;
   width: 100%;
-  padding: 2rem;
+  padding: 2.5rem 0.3rem;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: row;
-  gap: 1.4rem;
+  gap: 2rem;
 }
 
 .card__dollar:before {
@@ -23,8 +23,8 @@
 }
 
 img {
-  width: calc(100% / 3);
-  height: 420px;
+  width: calc(100% / 3 - 100px);
+  height: 320px;
 }
 
 .line {
