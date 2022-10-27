@@ -1,0 +1,32 @@
+.main {
+  display: flex;
+  background-color: #e2ebec;
+  min-height: 80vh;
+  width: 100%;
+  padding: 0.3rem;
+}
+.flex__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.flex__box div {
+  font-size: 20px;
+  font-weight: bold;
+  color: #455964;
+}
+
+.flex__box img {
+  width: 400px;
+  height: 400px;
+}
+
+@media screen and (max-width: 863px) {
+  .flex__box img {
+    width: 270px;
+    height: 270px;
+  }
+}

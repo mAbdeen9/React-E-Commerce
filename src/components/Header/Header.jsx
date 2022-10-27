@@ -118,7 +118,10 @@ function Header() {
               </div>
             </div>
             <div className={classes.line}></div>
-            <div className={classes.flex__listY}>
+            <div
+              onClick={() => navigate("/coming-soon")}
+              className={classes.flex__listY}
+            >
               <div>Trending</div>
               <p>Best Sellers</p>
               <p>New Releases</p>
@@ -273,8 +276,8 @@ function Header() {
           </div>
           <div>
             <ul>
-              <li>Today's Deals</li>
-              <li>Customer Service</li>
+              <li onClick={() => window.scrollTo(700, 700)}>Today's Deals</li>
+              <li onClick={() => navigate("/coming-soon")}>Customer Service</li>
             </ul>
           </div>
         </div>
