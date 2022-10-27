@@ -176,7 +176,7 @@ function Header() {
               ref={inputMobileRef}
               onBlur={() => setTimeout(() => setShowSearch(false), 500)}
               type="text"
-              placeholder="Search Shopzon"
+              placeholder=" Search Shopzon"
             />
             <button onClick={(e) => e.preventDefault()}>
               <Search color="black" size={"25px"} fontWeight="bold" />
