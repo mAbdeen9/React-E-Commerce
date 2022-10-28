@@ -1,0 +1,48 @@
+.main__box {
+  display: flex;
+  background-color: #e2ebec;
+  min-height: 88vh;
+  width: 100%;
+  padding: 0.3rem;
+}
+
+.flex__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  margin-bottom: 9rem;
+}
+
+.flex__box img {
+  width: 420px;
+  height: 400px;
+}
+
+.text__box :first-child {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.text__box :last-child {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #268597;
+}
+
+@media screen and (max-width: 863px) {
+  .flex__box {
+    gap: 0;
+    font-size: 14px;
+    margin-bottom: 14rem;
+  }
+
+  .text__box :first-child {
+    font-size: 1rem;
+  }
+  .flex__box img {
+    width: 150px;
+    height: 130px;
+  }
+}

@@ -7,21 +7,20 @@ const SignIn = React.lazy(() => import("../pages/SignIn/SignIn-page"));
 const SignUp = React.lazy(() => import("../pages/SignUp/SignUp-page"));
 const AboutPage = React.lazy(() => import("../pages/About/AboutPage"));
 const EmptyCart = React.lazy(() => import("../components/EmptyCart/EmptyCart"));
+const UserCart = React.lazy(() => import("../pages/Cart/CartPage"));
+
 const ComingSoon = React.lazy(() =>
   import("../pages/UnderConstruction/UnderConstruction")
 );
-
 const ResetPassword = React.lazy(() =>
   import("../components/ResetPassword/ResetPassword")
 );
 const OTPpage = React.lazy(() =>
   import("../components/ResetPassword/OTP-input")
 );
-
 const NewPassword = React.lazy(() =>
   import("../components/ResetPassword/NewPassword")
 );
-
 const Products = React.lazy(() => import("../pages/Products/Products-Page"));
 const Product = React.lazy(() => import("../pages/Product/ProductPage"));
 function Router() {
@@ -33,6 +32,7 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/user-cart" element={<UserCart />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="/reset-password" element={<ResetPassword />} />
