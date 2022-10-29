@@ -1,24 +1,36 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/AuthSlice";
 import classes from "./Signin.module.css";
+
 function Signin() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const [isVaild, setIsVaild] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const signHandler = (e) => {
     e.preventDefault();
-    const data = {
+    const inputValues = {
       email: emailRef.current?.value,
       password: passwordRef.current?.value,
     };
-    if (!data.email || !data.password) {
+
+    if (!inputValues.email || !inputValues.password) {
       setIsVaild(false);
       return;
     }
 
-    console.log(data);
+    dispatch(
+      authActions.validator({
+        token: "1234",
+        id: "Iz5Jbzto",
+        username: "Mohammeed Abdeen",
+        role: "user",
+      })
+    );
   };
 
   return (

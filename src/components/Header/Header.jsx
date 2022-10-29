@@ -13,9 +13,11 @@ import classes from "./Header.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import fakeProduct from "../../fakeProducts.json";
+import { useSelector } from "react-redux";
 
 function Header() {
   //
+  const { username } = useSelector((state) => state.Auth);
   const navigate = useNavigate();
   const [country, setCountry] = useState();
   const [mobileNavClass, setMobileNavClass] = useState("none");
@@ -99,10 +101,16 @@ function Header() {
         <div className={classes.rightbar}>
           <div className={classes.rightbar__top}>
             <div
-              onClick={() => navigate("/sign-in")}
+              onClick={() => {
+                if (!username) {
+                  navigate("/sign-in");
+                }
+              }}
               className={classes.mobile__sign}
             >
-              <span>Sign in </span>
+              <span>
+                {username ? `${username.split(" ")[0]} ` : `Sign in `}
+              </span>
               <Person color="white" size={"25px"} />
             </div>
             <div className={classes.rightbar__head}>
@@ -154,10 +162,16 @@ function Header() {
           </div>
           <div className={classes.mobile__right}>
             <div
-              onClick={() => navigate("/sign-in")}
+              onClick={() => {
+                if (!username) {
+                  navigate("/sign-in");
+                }
+              }}
               className={classes.mobile__sign}
             >
-              <span>Sign in ›</span>
+              <span>
+                {username ? `${username.split(" ")[0]}` : `Sign in ›`}
+              </span>
               <Person color="white" size={"25px"} />
             </div>
             <span
@@ -252,10 +266,16 @@ function Header() {
             </div>
           </div>
           <div
-            onClick={() => navigate("/sign-in")}
+            onClick={() => {
+              if (!username) {
+                navigate("/sign-in");
+              }
+            }}
             className={classes.bg__hello}
           >
-            <div className={classes.bg__deliver__hello}>Hello, sign in</div>
+            <div className={classes.bg__deliver__hello}>
+              {username ? `Hello, ${username.split(" ")[0]}` : `Hello, sign in`}
+            </div>
             <div>
               Account & Lists <ArrowDownShort />
             </div>
