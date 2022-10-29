@@ -1,4 +1,11 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
+import classes from "./Header.module.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import fakeProduct from "../../fakeProducts.json";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/AuthSlice";
+import { toast } from "react-toastify";
 import {
   List,
   Cart,
@@ -9,25 +16,29 @@ import {
   XLg,
   ArrowDownShort,
 } from "react-bootstrap-icons";
-import classes from "./Header.module.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import fakeProduct from "../../fakeProducts.json";
-import { useSelector } from "react-redux";
 
 function Header() {
-  //
-  const { username } = useSelector((state) => state.Auth);
-  const navigate = useNavigate();
   const [country, setCountry] = useState();
   const [mobileNavClass, setMobileNavClass] = useState("none");
   const [cartNum, setCartNum] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
   const [searchResuls, setSearchResults] = useState([]);
+  const { username } = useSelector((state) => state.Auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const inputRef = useRef();
   const inputMobileRef = useRef();
 
   useEffect(() => {
+    const getGeoInfo = async () => {
+      try {
+        const data = await axios.get("https://ipapi.co/json/");
+        setCountry(data.data.city);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getGeoInfo();
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -70,6 +81,30 @@ function Header() {
     });
   };
 
+  const logInLogOut = () => {
+    if (!username) {
+      navigate("/sign-in");
+    } else {
+      setMobileNavClass((state) => {
+        document.body.style.overflow = "unset";
+        state = "none";
+        return state;
+      });
+      navigate("/");
+      dispatch(authActions.logout());
+      toast.info("logout successfully", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
   const mobileCloseNavHandler = () => {
     setMobileNavClass((state) => {
       document.body.style.overflow = "unset";
@@ -77,19 +112,6 @@ function Header() {
       return state;
     });
   };
-
-  useEffect(() => {
-    const getGeoInfo = async () => {
-      try {
-        const data = await axios.get("https://ipapi.co/json/");
-        setCountry(data.data.city);
-      } catch (err) {
-        // alert(err);
-        console.log(err);
-      }
-    };
-    getGeoInfo();
-  }, []);
 
   return (
     <Fragment>
@@ -100,14 +122,7 @@ function Header() {
       >
         <div className={classes.rightbar}>
           <div className={classes.rightbar__top}>
-            <div
-              onClick={() => {
-                if (!username) {
-                  navigate("/sign-in");
-                }
-              }}
-              className={classes.mobile__sign}
-            >
+            <div onClick={() => logInLogOut()} className={classes.mobile__sign}>
               <span>
                 {username ? `${username.split(" ")[0]} ` : `Sign in `}
               </span>
@@ -161,14 +176,7 @@ function Header() {
             </span>
           </div>
           <div className={classes.mobile__right}>
-            <div
-              onClick={() => {
-                if (!username) {
-                  navigate("/sign-in");
-                }
-              }}
-              className={classes.mobile__sign}
-            >
+            <div onClick={() => logInLogOut()} className={classes.mobile__sign}>
               <span>
                 {username ? `${username.split(" ")[0]}` : `Sign in ›`}
               </span>
@@ -265,14 +273,7 @@ function Header() {
               ))}
             </div>
           </div>
-          <div
-            onClick={() => {
-              if (!username) {
-                navigate("/sign-in");
-              }
-            }}
-            className={classes.bg__hello}
-          >
+          <div onClick={() => logInLogOut()} className={classes.bg__hello}>
             <div className={classes.bg__deliver__hello}>
               {username ? `Hello, ${username.split(" ")[0]}` : `Hello, sign in`}
             </div>

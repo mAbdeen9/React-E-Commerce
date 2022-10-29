@@ -31,6 +31,8 @@ function Signin() {
         role: "user",
       })
     );
+
+    navigate("/");
   };
 
   return (

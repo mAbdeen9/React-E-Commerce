@@ -26,7 +26,7 @@ const NewPassword = React.lazy(() =>
 
 function Router() {
   //
-  const { token, username } = useSelector((state) => state.Auth);
+  const { token } = useSelector((state) => state.Auth);
   console.log(token);
   return (
     <Fragment>
