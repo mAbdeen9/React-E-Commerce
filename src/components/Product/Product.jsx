@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import classes from "./Product.module.css";
 import fakeProduct from "../../fakeProducts.json";
+import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
+import { cartActions } from "../../store/CartSlice";
 function Product() {
   //
   const { id } = useParams();
   const [data, setData] = useState();
+  const selectRef = useRef();
+  const { username } = useSelector((state) => state.Auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setData(() => {
@@ -14,6 +21,23 @@ function Product() {
     });
     window.scrollTo(0, 0);
   }, [id]);
+
+  const addToCartHandler = (e) => {
+    e.preventDefault();
+    if (!username) {
+      navigate("/sign-in");
+    } else {
+      const order = {
+        id: data.id,
+        title: data.title,
+        image: data.image,
+        price: data.price,
+        count: selectRef.current.value,
+      };
+      console.log(order);
+      dispatch(cartActions.addToCart(order));
+    }
+  };
 
   return (
     <div className={`container ${classes.product__box}`}>
@@ -54,8 +78,8 @@ function Product() {
       </div>
       <div className={classes.addToCart}>
         <div>In Stock.</div>
-        <form>
-          <select name="quantity">
+        <form onSubmit={addToCartHandler}>
+          <select ref={selectRef} name="quantity">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

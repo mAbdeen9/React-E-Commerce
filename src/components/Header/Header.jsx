@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import classes from "./Header.module.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import fakeProduct from "../../fakeProducts.json";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
@@ -28,6 +28,7 @@ function Header() {
   const navigate = useNavigate();
   const inputRef = useRef();
   const inputMobileRef = useRef();
+  const location = useLocation();
 
   useEffect(() => {
     const getGeoInfo = async () => {
@@ -183,7 +184,13 @@ function Header() {
               <Person color="white" size={"25px"} />
             </div>
             <span
-              onClick={() => navigate("/empty-cart")}
+              onClick={() => {
+                if (!username) {
+                  navigate("/empty-cart");
+                } else {
+                  navigate("/user-cart");
+                }
+              }}
               className={classes.mobile__cart}
             >
               <Cart color="white" size={"24px"} />
@@ -282,7 +289,13 @@ function Header() {
             </div>
           </div>
           <div
-            onClick={() => navigate("/empty-cart")}
+            onClick={() => {
+              if (!username) {
+                navigate("/empty-cart");
+              } else {
+                navigate("/user-cart");
+              }
+            }}
             className={classes.bg__cart}
           >
             <Cart color="white" fontSize="30px" /> <span> Cart </span>
@@ -297,7 +310,18 @@ function Header() {
           </div>
           <div>
             <ul>
-              <li onClick={() => window.scrollTo(700, 700)}>Today's Deals</li>
+              <li
+                onClick={() => {
+                  if (location.pathname === "/") {
+                    window.scrollTo(700, 700);
+                  } else {
+                    navigate("/");
+                    window.scrollTo(700, 700);
+                  }
+                }}
+              >
+                Today's Deals
+              </li>
               <li onClick={() => navigate("/coming-soon")}>Customer Service</li>
             </ul>
           </div>
