@@ -34,7 +34,7 @@ function Product() {
         price: data.price,
         count: selectRef.current.value,
       };
-      console.log(order);
+
       dispatch(cartActions.addToCart(order));
     }
   };

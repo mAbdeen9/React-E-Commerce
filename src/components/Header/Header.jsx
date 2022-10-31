@@ -16,14 +16,15 @@ import {
   XLg,
   ArrowDownShort,
 } from "react-bootstrap-icons";
+import { cartActions } from "../../store/CartSlice";
 
 function Header() {
   const [country, setCountry] = useState();
   const [mobileNavClass, setMobileNavClass] = useState("none");
-  const [cartNum, setCartNum] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
   const [searchResuls, setSearchResults] = useState([]);
   const { username } = useSelector((state) => state.Auth);
+  const { items: cartNum } = useSelector((state) => state.Cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputRef = useRef();
@@ -93,6 +94,7 @@ function Header() {
       });
       navigate("/");
       dispatch(authActions.logout());
+      dispatch(cartActions.removeAll());
       toast.info("logout successfully", {
         position: "top-center",
         autoClose: 3000,

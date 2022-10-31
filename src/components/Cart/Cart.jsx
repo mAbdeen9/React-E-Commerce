@@ -5,8 +5,7 @@ import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 function Cart() {
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.Cart);
-  console.log(cart);
+  const { cart, items, subtotal } = useSelector((state) => state.Cart);
 
   return (
     <div className={classes.main__box}>
@@ -41,7 +40,7 @@ function Cart() {
                       </div>
                       <div>Free Shipping</div>
                     </div>
-                    <span className={classes.qty}>Qty: 1</span>
+                    <span className={classes.qty}>Qty: {product.count}</span>
                     <div className={classes.card__delete__Btn}>Delete </div>
                   </div>
                   <div className={classes.card__price}>${product.price}</div>
@@ -51,12 +50,13 @@ function Cart() {
             );
           })}
           <div className={classes.subtotal}>
-            Subtotal (1 item): <span>$15.99</span>
+            Subtotal ({items} items):
+            <span> ${subtotal}</span>
           </div>
         </div>
         <div className={classes.checkout}>
           <div className={classes.subtotalCheck}>
-            Subtotal (1 item): <span>$15.99</span>
+            Subtotal ({items} items): <span> ${subtotal}</span>
           </div>
           <div className={classes.checkout__btn}>
             <button>Proceed to checkout</button>
