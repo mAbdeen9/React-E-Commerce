@@ -5,10 +5,13 @@ import fakeProduct from "../../fakeProducts.json";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import { cartActions } from "../../store/CartSlice";
+import Modal from "../Modal/Modal";
+
 function Product() {
   //
   const { id } = useParams();
   const [data, setData] = useState();
+  const [showModal, setShowModal] = useState(false);
   const selectRef = useRef();
   const { username } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
@@ -34,13 +37,36 @@ function Product() {
         price: data.price,
         count: selectRef.current.value,
       };
-
+      setShowModal(true);
       dispatch(cartActions.addToCart(order));
     }
   };
 
   return (
     <div className={`container ${classes.product__box}`}>
+      {showModal && (
+        <Modal>
+          <div className={classes.modal__box}>
+            <div>
+              <div>
+                <img src={data?.image} alt="Product img" />
+              </div>
+            </div>
+            <div className={classes.modal__info}>
+              <div> ✅ Added to Cart</div>
+              <div>
+                <button onClick={() => setShowModal(false)}>
+                  Continue shopping
+                </button>
+                <button onClick={() => navigate("/user-cart")}>
+                  Go to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
+
       <img src={data?.image} alt="Product img" />
       <div className={classes.product__info}>
         <h3>{data?.title}</h3>

@@ -1,0 +1,80 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 1300;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal {
+  position: fixed;
+  top: 10vh;
+  left: 5%;
+  width: 90%;
+  background-color: #fff;
+  min-height: 50px;
+  padding: 1rem;
+  border-radius: 13px;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 2900;
+  color: black;
+  font-family: "Varela Round", sans-serif;
+  -webkit-animation: slide-down 300ms ease-out forwards;
+  animation: slide-down 300ms ease-out forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.modal img {
+  width: 300px;
+  height: 100% - 50px;
+  margin: 5px;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    font-size: 12px;
+  }
+  .modal img {
+    width: 150px;
+    height: 100% - 20px;
+  }
+}
+
+@-webkit-keyframes slide-down {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-3rem);
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-3rem);
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
