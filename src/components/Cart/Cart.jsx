@@ -2,11 +2,12 @@ import React, { Fragment } from "react";
 import classes from "./Cart.module.css";
 import EmptyImgae from "../../assets/empty-cart.png";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../store/CartSlice";
 function Cart() {
   const navigate = useNavigate();
   const { cart, items, subtotal } = useSelector((state) => state.Cart);
-
+  const dispatch = useDispatch();
   return (
     <div className={classes.main__box}>
       {/* <div className={`container ${classes.flex__box}`}>
@@ -27,7 +28,7 @@ function Cart() {
             <div className={classes.price}>Price</div>
           </div>
           <div className={classes.line}></div>
-          {cart.map((product, i) => {
+          {cart?.map((product, i) => {
             return (
               <Fragment key={i}>
                 <div className={classes.product__card}>
@@ -41,7 +42,14 @@ function Cart() {
                       <div>Free Shipping</div>
                     </div>
                     <span className={classes.qty}>Qty: {product.count}</span>
-                    <div className={classes.card__delete__Btn}>Delete </div>
+                    <div
+                      onClick={() =>
+                        dispatch(cartActions.deleteOrderFromCart(product))
+                      }
+                      className={classes.card__delete__Btn}
+                    >
+                      Delete
+                    </div>
                   </div>
                   <div className={classes.card__price}>${product.price}</div>
                 </div>
@@ -51,12 +59,12 @@ function Cart() {
           })}
           <div className={classes.subtotal}>
             Subtotal ({items} items):
-            <span> ${subtotal}</span>
+            <span> ${subtotal.toFixed(2)}</span>
           </div>
         </div>
         <div className={classes.checkout}>
           <div className={classes.subtotalCheck}>
-            Subtotal ({items} items): <span> ${subtotal}</span>
+            Subtotal ({items} items): <span> ${subtotal.toFixed(2)}</span>
           </div>
           <div className={classes.checkout__btn}>
             <button>Proceed to checkout</button>

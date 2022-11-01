@@ -14,16 +14,23 @@ const CartSlice = createSlice({
           }
         });
         state.items = +state.items + +action.payload.count;
-        state.subtotal = +state.subtotal + +action.payload.price;
+        state.subtotal =
+          +state.subtotal + +action.payload.price * action.payload.count;
         return state;
       }
       state.items = +state.items + +action.payload.count;
-      state.subtotal = +state.subtotal + +action.payload.price;
+      state.subtotal =
+        +state.subtotal + +action.payload.price * action.payload.count;
       state.ids.push(action.payload.id);
       state.cart.push(action.payload);
     },
     deleteOrderFromCart(state, action) {
-      return state.cart.filter((o) => o.id !== action.payload);
+      state.cart = state.cart.filter((o) => o.id !== action.payload.id);
+      state.items = +state.items - +action.payload.count;
+      state.subtotal =
+        +state.subtotal - +action.payload.price * action.payload.count;
+      state.ids.splice(state.ids.indexOf(action.payload.id), 1);
+      if (state.subtotal <= 0) state.subtotal = 0;
     },
     removeAll: () => initialState,
   },
