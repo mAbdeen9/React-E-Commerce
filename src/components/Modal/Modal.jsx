@@ -5,11 +5,8 @@ import classes from "./Modal.module.css";
 import { useEffect } from "react";
 
 function ModalOverlay(props) {
-  const handleClick = () => {
-    props.handleClick();
-  };
   return (
-    <div onClick={handleClick} className={classes.backdrop}>
+    <div className={classes.backdrop}>
       <div className={classes.modal}>
         <div>{props.children}</div>
       </div>

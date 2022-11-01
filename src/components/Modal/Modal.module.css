@@ -45,10 +45,12 @@
 
 @media (max-width: 768px) {
   .modal {
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: 540;
   }
   .modal img {
     width: 150px;
+
     height: 100% - 20px;
   }
 }
