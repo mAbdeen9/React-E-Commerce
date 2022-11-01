@@ -164,8 +164,9 @@
 
 .checkout__btn {
   background-color: #ffd712;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   border-radius: 0.4rem;
+  font-size: 15px;
   cursor: pointer;
 }
 
