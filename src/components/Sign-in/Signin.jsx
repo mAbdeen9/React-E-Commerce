@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
 import classes from "./Signin.module.css";
+import httpRequest from "../../helpers/httpRequest";
+import jwtDecode from "jwt-decode";
 
 function Signin() {
   const emailRef = useRef();
@@ -11,7 +13,7 @@ function Signin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const signHandler = (e) => {
+  const signHandler = async (e) => {
     e.preventDefault();
     const inputValues = {
       email: emailRef.current?.value,
@@ -23,16 +25,27 @@ function Signin() {
       return;
     }
 
-    dispatch(
-      authActions.validator({
-        token: "1234",
-        id: "Iz5Jbzto",
-        username: "Mohammeed Abdeen",
-        role: "user",
-      })
-    );
+    try {
+      const res = await httpRequest("POST", "/login/sign-in", "", inputValues);
+      const data = res;
+      const user = jwtDecode(data.data.data.token);
+      if (res.status === 200) {
+        localStorage.setItem("JWT", JSON.stringify(data.data.data.token));
 
-    navigate("/");
+        dispatch(
+          authActions.validator({
+            token: data.data.data.token,
+            id: user.payload.id,
+            username: user.payload.name,
+            role: user.payload.role,
+          })
+        );
+
+        navigate("/", { replace: true });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
