@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import Router from "./Router/Router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "./components/Modal/Modal";
 
 function App() {
   return (

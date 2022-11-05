@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import httpRequest from "../../helpers/httpRequest";
 import useInputChecker from "../../hooks/useInputChecker";
 
 import classes from "./SignUp.module.css";
@@ -13,9 +15,10 @@ function SignUp() {
   const [nameError, setNameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [serverMessage, setServerMessage] = useState(null);
   const [isVaild, setIsVaild] = useState(true);
 
-  const signUpHandler = (e) => {
+  const signUpHandler = async (e) => {
     e.preventDefault();
     const formValues = {
       name: nameRef.current?.value,
@@ -32,7 +35,28 @@ function SignUp() {
     };
     const valid = vaildForm();
     if (!valid) return;
-    console.log("test sending");
+
+    try {
+      const res = await httpRequest("POST", "/login/sign-up", "", formValues);
+      const serverMessage = res.data.message;
+
+      toast.success(serverMessage, {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setTimeout(() => {
+        navigate("/sign-in");
+      }, 4000);
+    } catch (err) {
+      setServerMessage(err?.response?.data?.message);
+      setIsVaild((state) => !state);
+    }
   };
 
   return (
@@ -49,8 +73,8 @@ function SignUp() {
             <div className={classes.error__box}>
               <h5> There was a problem</h5>
               <p>
-                {nameError} {emailError} {passwordError} . Please correct and
-                try again.
+                {serverMessage} {nameError} {emailError} {passwordError} .
+                Please correct and try again.
               </p>
             </div>
           )}

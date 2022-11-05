@@ -9,8 +9,8 @@ import { toast } from "react-toastify";
 function Cart() {
   const navigate = useNavigate();
   const { cart, items, subtotal } = useSelector((state) => state.Cart);
-
   const dispatch = useDispatch();
+
   return (
     <div className={classes.main__box}>
       {cart.length <= 0 && (

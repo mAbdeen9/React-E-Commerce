@@ -8,9 +8,12 @@ import Jewellery from "./../../assets//Jewellery.jpeg";
 import classes from "./Category.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+
 function Categorys() {
   const [country, setCountry] = useState("");
   const navigate = useNavigate();
+
   const clickHadnler = (link) => {
     navigate(`/Products/${link}`);
   };
@@ -21,7 +24,7 @@ function Categorys() {
         const data = await axios.get("https://ipapi.co/json/");
         setCountry(data.data.city);
       } catch (err) {
-        alert(err);
+        toast(err);
       }
     };
     getGeoInfo();
