@@ -6,18 +6,24 @@ import Router from "./Router/Router";
 import httpRequest from "./helpers/httpRequest";
 import jwtDecode from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
+import { cartActions } from "./store/CartSlice";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem("JWT")) || null;
-
+    const getCart = async () => {
+      const res = await httpRequest("GET", "/cart/check-cart", userToken);
+      dispatch(cartActions.updateCartFromServer(res.data.data));
+    };
     if (userToken) {
       const user = jwtDecode(userToken);
+
       const checkValidToken = async () => {
         try {
           await httpRequest("POST", "/login/checkValidToken", userToken);
+
           dispatch(
             authActions.validator({
               username: user.payload.name,
@@ -26,10 +32,12 @@ function App() {
               role: user.payload.role,
             })
           );
+          getCart();
         } catch (error) {
           dispatch(authActions.logout());
         }
       };
+
       checkValidToken();
     }
     // eslint-disable-next-line

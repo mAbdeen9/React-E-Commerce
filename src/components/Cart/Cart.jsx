@@ -5,11 +5,33 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/CartSlice";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
+import httpRequest from "../../helpers/httpRequest";
 
 function Cart() {
   const navigate = useNavigate();
   const { cart, items, subtotal } = useSelector((state) => state.Cart);
   const dispatch = useDispatch();
+  const { username, token, id: userID } = useSelector((state) => state.Auth);
+  const updatedCart = useSelector((state) => state.Cart);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (username) {
+        const syncCart = async () => {
+          try {
+            await httpRequest("POST", "/cart/update-cart", token, {
+              userID,
+              updatedCart,
+            });
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        syncCart();
+      }
+    }, 1000);
+  }, [updatedCart, username, token, userID]);
 
   return (
     <div className={classes.main__box}>

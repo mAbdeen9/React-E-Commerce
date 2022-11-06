@@ -33,6 +33,9 @@ const CartSlice = createSlice({
       if (state.subtotal <= 0) state.subtotal = 0;
     },
     removeAll: () => initialState,
+    updateCartFromServer(state, action) {
+      return action.payload;
+    },
   },
 });
 

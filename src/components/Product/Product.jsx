@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
 import { cartActions } from "../../store/CartSlice";
 import Modal from "../Modal/Modal";
+import httpRequest from "../../helpers/httpRequest";
 
 function Product() {
   //
@@ -13,9 +14,26 @@ function Product() {
   const [data, setData] = useState();
   const [showModal, setShowModal] = useState(false);
   const selectRef = useRef();
-  const { username } = useSelector((state) => state.Auth);
+  const { username, token, id: userID } = useSelector((state) => state.Auth);
+  const updatedCart = useSelector((state) => state.Cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (username && updatedCart.items !== 0) {
+      const syncCart = async () => {
+        try {
+          await httpRequest("POST", "/cart/update-cart", token, {
+            userID,
+            updatedCart,
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      syncCart();
+    }
+  }, [updatedCart, username, token, userID]);
 
   useEffect(() => {
     setData(() => {

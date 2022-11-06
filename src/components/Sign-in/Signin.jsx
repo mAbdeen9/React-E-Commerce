@@ -42,6 +42,7 @@ function Signin() {
         );
 
         navigate("/", { replace: true });
+        window.location.reload();
       }
     } catch (err) {
       console.log(err);
