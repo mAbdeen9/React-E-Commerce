@@ -37,7 +37,7 @@ function Header() {
         const data = await axios.get("https://ipapi.co/json/");
         setCountry(data.data.city);
       } catch (err) {
-        console.log(err);
+        toast(err);
       }
     };
     getGeoInfo();
@@ -105,6 +105,7 @@ function Header() {
         progress: undefined,
         theme: "light",
       });
+      localStorage.clear();
     }
   };
 

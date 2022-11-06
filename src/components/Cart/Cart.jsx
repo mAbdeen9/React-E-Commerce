@@ -74,19 +74,9 @@ function Cart() {
             </div>
             <div
               onClick={() => {
-                toast.warn("No Payments !", {
+                toast.warn("No Payments dummy App!", {
                   position: "top-right",
                   autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "light",
-                });
-                toast.success("But you can hire me 😎 ", {
-                  position: "top-right",
-                  autoClose: 6000,
                   hideProgressBar: false,
                   closeOnClick: true,
                   pauseOnHover: true,
