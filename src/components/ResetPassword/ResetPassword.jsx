@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import httpRequest from "../../helpers/httpRequest";
 import classes from "./ResetPassword.module.css";
 
 function ResetPassword() {
@@ -9,7 +10,7 @@ function ResetPassword() {
   const [isVaild, setIsVaild] = useState(true);
   const navigate = useNavigate();
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     const data = {
       email: emailRef.current?.value,
@@ -19,8 +20,14 @@ function ResetPassword() {
       return;
     }
 
-    console.log(data);
-    navigate("/OTP", { replace: true });
+    try {
+      const res = await httpRequest("POST", "/login/forgotPassword", "", data);
+      console.log(res);
+      navigate("/new-password", { replace: true });
+    } catch (err) {
+      setIsVaild(false);
+      return;
+    }
   };
 
   return (

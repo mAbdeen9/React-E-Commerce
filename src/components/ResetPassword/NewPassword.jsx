@@ -1,19 +1,22 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import httpRequest from "../../helpers/httpRequest";
 import useInputChecker from "../../hooks/useInputChecker";
 import classes from "./ResetPassword.module.css";
 
 function NewPassword() {
   //
   const passwordRef = useRef();
+  const otpRef = useRef();
   const { checkPassword } = useInputChecker();
   const [isVaild, setIsVaild] = useState(true);
   const [passwordError, setPasswordError] = useState(null);
   const navigate = useNavigate();
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     const data = {
+      otp: otpRef.current?.value,
       password: passwordRef.current?.value,
     };
     const vaildForm = () => {
@@ -22,7 +25,13 @@ function NewPassword() {
     };
     const valid = vaildForm();
     if (!valid) return;
-    console.log(data);
+    try {
+      const res = await httpRequest("PATCH", "/login/resetPassword", "", data);
+      console.log(res);
+      navigate("/", { replace: true });
+    } catch (err) {
+      console.log(err);
+    }
     navigate("/sign-in", { replace: true });
   };
 
@@ -49,6 +58,16 @@ function NewPassword() {
           <div className={classes.form}>
             <form onSubmit={submitHandler}>
               <div className={classes.input__box}>
+                <label htmlFor="otp">OTP :</label>
+                <input
+                  placeholder="Enter OTP"
+                  ref={otpRef}
+                  id="otp"
+                  type="text"
+                />
+              </div>
+              <div className={classes.input__box}>
+                <label htmlFor="otp">New Password :</label>
                 <input
                   placeholder="Enter new password"
                   ref={passwordRef}

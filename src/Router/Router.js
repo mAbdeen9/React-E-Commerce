@@ -17,16 +17,14 @@ const ComingSoon = React.lazy(() =>
 const ResetPassword = React.lazy(() =>
   import("../components/ResetPassword/ResetPassword")
 );
-const OTPpage = React.lazy(() =>
-  import("../components/ResetPassword/OTP-input")
-);
+
 const NewPassword = React.lazy(() =>
   import("../components/ResetPassword/NewPassword")
 );
 
 function Router() {
   //
-  // const { token } = useSelector((state) => state.Auth);
+  const { token } = useSelector((state) => state.Auth);
 
   return (
     <Fragment>
@@ -35,12 +33,11 @@ function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/user-cart" element={<UserCart />} />
+          {token && <Route path="/user-cart" element={<UserCart />} />}
           <Route path="/about" element={<AboutPage />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/new-password" element={<NewPassword />} />
-          <Route path="/OTP" element={<OTPpage />} />
           <Route path="/empty-cart" element={<EmptyCart />} />
           <Route path="/Products/:cat" element={<Products />} />
           <Route path="/Product/:id" element={<Product />} />
