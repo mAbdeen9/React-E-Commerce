@@ -17,9 +17,11 @@ function SignUp() {
   const [passwordError, setPasswordError] = useState(null);
   const [serverMessage, setServerMessage] = useState(null);
   const [isVaild, setIsVaild] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const signUpHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const formValues = {
       name: nameRef.current?.value,
       email: emailRef.current?.value,
@@ -34,7 +36,10 @@ function SignUp() {
       return true;
     };
     const valid = vaildForm();
-    if (!valid) return;
+    if (!valid) {
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const res = await httpRequest("POST", "/login/sign-up", "", formValues);
@@ -57,6 +62,7 @@ function SignUp() {
       setServerMessage(err?.response?.data?.message);
       setIsVaild((state) => !state);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -109,7 +115,7 @@ function SignUp() {
               </div>
 
               <div className={classes.btn}>
-                <button>Continue</button>
+                <button>{isLoading ? "Loading ..." : "Continue"} </button>
               </div>
             </form>
           </div>

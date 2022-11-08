@@ -12,9 +12,11 @@ function Signin() {
   const [isVaild, setIsVaild] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const signHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const inputValues = {
       email: emailRef.current?.value,
       password: passwordRef.current?.value,
@@ -22,6 +24,7 @@ function Signin() {
 
     if (!inputValues.email || !inputValues.password) {
       setIsVaild(false);
+      setIsLoading(false);
       return;
     }
 
@@ -45,8 +48,9 @@ function Signin() {
         window.location.reload();
       }
     } catch (err) {
-      console.log(err);
+      setIsVaild(false);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -88,7 +92,7 @@ function Signin() {
               </div>
 
               <div className={classes.btn}>
-                <button>Continue</button>
+                <button>{isLoading ? "Loading ..." : "Continue"} </button>
               </div>
             </form>
           </div>

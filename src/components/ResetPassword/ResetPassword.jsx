@@ -9,9 +9,11 @@ function ResetPassword() {
 
   const [isVaild, setIsVaild] = useState(true);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const data = {
       email: emailRef.current?.value,
     };
@@ -21,13 +23,14 @@ function ResetPassword() {
     }
 
     try {
-      const res = await httpRequest("POST", "/login/forgotPassword", "", data);
-      console.log(res);
+      await httpRequest("POST", "/login/forgotPassword", "", data);
       navigate("/new-password", { replace: true });
     } catch (err) {
       setIsVaild(false);
       return;
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -68,7 +71,7 @@ function ResetPassword() {
               </div>
 
               <div className={classes.btn}>
-                <button>Continue</button>
+                <button> {isLoading ? "Loading ..." : "Continue"}</button>
               </div>
             </form>
           </div>

@@ -11,10 +11,13 @@ function NewPassword() {
   const { checkPassword } = useInputChecker();
   const [isVaild, setIsVaild] = useState(true);
   const [passwordError, setPasswordError] = useState(null);
+  const [tokenError, setTokenError] = useState(null);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const data = {
       otp: otpRef.current?.value,
       password: passwordRef.current?.value,
@@ -24,15 +27,16 @@ function NewPassword() {
       return true;
     };
     const valid = vaildForm();
-    if (!valid) return;
-    try {
-      const res = await httpRequest("PATCH", "/login/resetPassword", "", data);
-      console.log(res);
-      navigate("/", { replace: true });
-    } catch (err) {
-      console.log(err);
+    if (!valid) {
+      return setIsLoading(false);
     }
-    navigate("/sign-in", { replace: true });
+    try {
+      await httpRequest("PATCH", "/login/resetPassword", "", data);
+      navigate("/sign-in", { replace: true });
+    } catch (err) {
+      setTokenError(err?.response?.data?.message);
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -65,6 +69,7 @@ function NewPassword() {
                   id="otp"
                   type="text"
                 />
+                <p style={{ color: "red" }}>{tokenError}</p>
               </div>
               <div className={classes.input__box}>
                 <label htmlFor="otp">New Password :</label>
@@ -78,7 +83,7 @@ function NewPassword() {
               </div>
 
               <div className={classes.btn}>
-                <button>Save changes</button>
+                <button>{isLoading ? "Loading ..." : "Save changes"} </button>
               </div>
             </form>
           </div>
