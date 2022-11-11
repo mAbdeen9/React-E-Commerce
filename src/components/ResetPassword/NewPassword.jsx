@@ -56,7 +56,7 @@ function NewPassword() {
           )}
           <div className={classes.header__tag}>
             Password assistance <br />
-            Check your email for the token
+            Check your email for the OTP
             <p>We'll ask for this password whenever you Sign-In.</p>
           </div>
 
