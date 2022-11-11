@@ -27,7 +27,6 @@ function ResetPassword() {
       navigate("/new-password", { replace: true });
     } catch (err) {
       setIsVaild(false);
-      return;
     }
 
     setIsLoading(false);
