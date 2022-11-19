@@ -14,6 +14,16 @@
   align-items: center;
 }
 
+.orders__box {
+  background-color: #ffffff;
+  padding: 0.3rem;
+}
+.cc__h {
+  text-align: center;
+  color: #017185;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
 .logo {
   color: white;
   font-weight: bold;
@@ -29,4 +39,245 @@
   background-color: #e3ebec;
   min-height: 100vh;
   display: flex;
+  padding-top: 3rem;
+}
+
+.main__box {
+  display: flex;
+  background-color: #e2ebec;
+  min-height: 88vh;
+  width: 100%;
+  padding: 0.3rem;
+}
+
+.flex__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  margin-bottom: 9rem;
+}
+
+.flex__box img {
+  width: 420px;
+  height: 400px;
+}
+
+.text__box :first-child {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.text__box :last-child {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #268597;
+}
+
+/* cart & checkout */
+
+.cart__check {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+  padding: 1rem 0 1rem;
+}
+
+.orders {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #ffff;
+  width: 78%;
+}
+
+.orders__title {
+  display: flex;
+  justify-content: space-between;
+  line-height: 0.5;
+}
+
+.orders__title span {
+  color: #268597;
+  font-weight: 550;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.price {
+  color: silver;
+  font-weight: 650;
+  font-size: 14px;
+  align-self: flex-end;
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: #eaeded;
+  margin-top: 1rem;
+}
+
+.product__card {
+  padding: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product__card img {
+  width: 200px;
+  height: 200px;
+}
+
+.product__des {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 0.3rem;
+}
+
+.card__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.card__title :first-child {
+  font-weight: 650;
+  font-size: 1.1rem;
+}
+
+.card__title :last-child {
+  font-size: 14px;
+  font-weight: bold;
+}
+.card__delete__Btn {
+  color: #017185;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.card__price {
+  font-weight: bolder;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+}
+
+.subtotal {
+  align-self: flex-end;
+  padding: 0.9rem 0 0.5rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.subtotal span {
+  font-weight: bold;
+}
+
+.qty {
+  font-size: 14px;
+  background-color: #e3e6e6;
+  width: fit-content;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+}
+
+.subtotalCheck {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.subtotalCheck span {
+  font-weight: bold;
+}
+
+.checkout {
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  background-color: #ffff;
+  width: 20%;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkout__btn {
+  background-color: #ffd712;
+  padding: 0.3rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.checkout__btn button {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+}
+.checkout__btn:hover {
+  background-color: #ffe712;
+}
+
+@media screen and (max-width: 863px) {
+  .flex__box {
+    gap: 0;
+    font-size: 14px;
+    margin-bottom: 14rem;
+  }
+
+  .text__box :first-child {
+    font-size: 1rem;
+  }
+  .flex__box img {
+    width: 150px;
+    height: 130px;
+  }
+
+  .cart__check {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .checkout {
+    width: 100%;
+  }
+
+  .orders {
+    width: 100%;
+  }
+
+  .product__des {
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  .card__title :first-child {
+    font-weight: 650;
+    font-size: 0.9rem;
+  }
+
+  .card__title :last-child {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .card__delete__Btn {
+    color: #017185;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .product__card img {
+    width: 100px;
+    height: 100px;
+  }
 }
