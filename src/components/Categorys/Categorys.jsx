@@ -14,7 +14,7 @@ function Categorys() {
   const [country, setCountry] = useState("");
   const navigate = useNavigate();
 
-  const clickHadnler = (link) => {
+  const clickHandler = (link) => {
     navigate(`/Products/${link}`);
   };
 
@@ -36,22 +36,22 @@ function Categorys() {
       <Card
         header="Men's clothing"
         img={mens__col}
-        onClick={() => clickHadnler("mens clothing")}
+        onClick={() => clickHandler("mens clothing")}
       />
       <Card
         header="Women's clothing"
         img={womens__col}
-        onClick={() => clickHadnler("womens clothing")}
+        onClick={() => clickHandler("womens clothing")}
       />
       <Card
         header="Electronics"
         img={electronics__col}
-        onClick={() => clickHadnler("electronics")}
+        onClick={() => clickHandler("electronics")}
       />
       <Card
         header="Jewellery"
         img={Jewellery}
-        onClick={() => clickHadnler("jewelery")}
+        onClick={() => clickHandler("jewelery")}
       />
     </div>
   );

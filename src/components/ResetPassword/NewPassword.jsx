@@ -51,7 +51,7 @@ function NewPassword() {
           {!isVaild && (
             <div className={classes.error__box}>
               <h5>There was a problem</h5>
-              <p>Please enter vaild password , {passwordError}</p>
+              <p>Please enter valid password , {passwordError}</p>
             </div>
           )}
           <div className={classes.header__tag}>

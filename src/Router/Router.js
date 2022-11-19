@@ -4,6 +4,10 @@ import PagesLoading from "../components/Loading/PagesLoading";
 import { useSelector } from "react-redux";
 
 const Home = React.lazy(() => import("../pages/Home/Home"));
+const AdminPanel = React.lazy(() =>
+  import("./../components/AdminPanel/AdminPanel")
+);
+
 const SignIn = React.lazy(() => import("../pages/SignIn/SignIn-page"));
 const SignUp = React.lazy(() => import("../pages/SignUp/SignUp-page"));
 const AboutPage = React.lazy(() => import("../pages/About/AboutPage"));
@@ -24,12 +28,15 @@ const NewPassword = React.lazy(() =>
 
 function Router() {
   //
-  const { token } = useSelector((state) => state.Auth);
+  const { token, role } = useSelector((state) => state.Auth);
 
   return (
     <Fragment>
       <Suspense fallback={<PagesLoading />}>
         <Routes>
+          {role === "admin" && (
+            <Route path="/admin-panel" element={<AdminPanel />} />
+          )}
           <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
@@ -40,7 +47,9 @@ function Router() {
           <Route path="/new-password" element={<NewPassword />} />
           <Route path="/empty-cart" element={<EmptyCart />} />
           <Route path="/Products/:cat" element={<Products />} />
-          <Route path="/Product/:id" element={<Product />} />
+          {role !== "admin" && (
+            <Route path="/Product/:id" element={<Product />} />
+          )}
         </Routes>
       </Suspense>
     </Fragment>

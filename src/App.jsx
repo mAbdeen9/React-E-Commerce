@@ -7,10 +7,11 @@ import httpRequest from "./helpers/httpRequest";
 import jwtDecode from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
 import { cartActions } from "./store/CartSlice";
+import { useNavigate } from "react-router";
 
 function App() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const userToken = JSON.parse(localStorage.getItem("JWT")) || null;
     const getCart = async () => {
@@ -23,7 +24,6 @@ function App() {
       const checkValidToken = async () => {
         try {
           await httpRequest("POST", "/login/checkValidToken", userToken);
-
           dispatch(
             authActions.validator({
               username: user.payload.name,
@@ -32,6 +32,10 @@ function App() {
               role: user.payload.role,
             })
           );
+          if (user.payload.role === "admin") {
+            navigate("/admin-panel");
+            return;
+          }
           getCart();
         } catch (error) {
           dispatch(authActions.logout());
