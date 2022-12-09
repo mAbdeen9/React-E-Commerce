@@ -43,6 +43,14 @@ function App() {
       };
 
       checkValidToken();
+    } else {
+      const wakeUpServer = async () => {
+        try {
+          await httpRequest("POST", "/login/sign-in");
+        } catch (err) {}
+      };
+
+      wakeUpServer();
     }
     // eslint-disable-next-line
   }, []);
