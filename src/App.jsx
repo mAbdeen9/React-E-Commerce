@@ -44,6 +44,7 @@ function App() {
 
       checkValidToken();
     } else {
+      // free dyno awake faster 😎
       const wakeUpServer = async () => {
         try {
           await httpRequest("POST", "/login/sign-in");
